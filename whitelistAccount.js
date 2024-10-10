@@ -35,7 +35,7 @@ async function whitelistAccount(mainnetAccountIdToWhitelist) {
 		const contractExecuteStatus = contractExecuteRx.status;
 
 		// Construct the Hashscan URL
-		const hashscanUrl = `https://hashscan.io/testnet/transaction/${contractExecuteSubmit.transactionId}`;
+		const hashscanUrl = `https://hashscan.io/${network}/transaction/${contractExecuteSubmit.transactionId}`;
 
 		// Check if the status is SUCCESS
 		if (contractExecuteStatus.toString() === "SUCCESS") {
