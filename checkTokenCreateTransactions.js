@@ -3,13 +3,13 @@ import fetch from "node-fetch";
 
 const accountId = "0.0.2212547";
 const limit = 100; // Number of transactions to fetch per request
-const txType = "TOKENMINT"; // Transaction type to filter by
+const txType = "TOKENCREATION"; // Transaction type to filter by
 const result = "success"; // Transaction result to filter by
 const startTime = toUnixTimestamp(new Date("2024-06-01"));
 // const currentTime = toUnixTimestamp(new Date());
 
-// Function to check if there's a successful token mint transaction within the time window
-async function checkTokenMintTransactions(accountId) {
+// Function to check if there's a successful token create transaction within the time window
+async function checkTokenCreateTransactions(accountId) {
 	let url = formUrl(accountId, limit, txType, result, startTime);
 
 	while (url) {
@@ -22,7 +22,7 @@ async function checkTokenMintTransactions(accountId) {
 			const data = await response.json();
 			const transactions = data.transactions;
 
-			// Check if there's at least one successful transaction of type TOKENMINT
+			// Check if there's at least one successful transaction of the desired type
 			if (transactions && transactions.length > 0) {
 				return true;
 			}
@@ -40,7 +40,7 @@ async function checkTokenMintTransactions(accountId) {
 }
 
 // Call the function and print the result
-checkTokenMintTransactions(accountId).then((result) => {
+checkTokenCreateTransactions(accountId).then((result) => {
 	console.log(result); // true if there is a transaction, false otherwise
 });
 
